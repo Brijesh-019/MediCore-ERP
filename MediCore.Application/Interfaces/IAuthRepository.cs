@@ -1,18 +1,37 @@
 ﻿using MediCore.Application.DTOs;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
-namespace MediCore.Application.Interfaces
+namespace MediCore.Application.Interfaces;
+
+public interface IAuthRepository
 {
-    public interface IAuthRepository
-    {
-        Task<LoginResponse?> GetLoginUserAsync(string userName);
+    Task<LoginResponse?> GetLoginUserAsync(
+        string userName
+    );
 
-        Task<List<HospitalAccessDto>> GetUserHospitalsAsync(long userId);
+    Task<List<HospitalAccessDto>> GetUserHospitalsAsync(
+        long userId
+    );
 
-        Task<List<BranchAccessDto>> GetUserBranchesAsync(
-            long userId,
-            long hospitalId);
-    }
+    Task<List<BranchAccessDto>> GetUserBranchesAsync(
+        long userId,
+        long hospitalId
+    );
+
+    Task<(bool Success, string Message, long Id)>
+        CreateUserSessionAsync(
+            CreateUserSessionRequest request
+        );
+
+    Task<RefreshSessionDto?> GetRefreshSessionAsync(
+        string refreshTokenHash
+    );
+
+    Task<(bool Success, string Message)>
+        RotateRefreshTokenAsync(
+            string sessionId,
+            string oldRefreshTokenHash,
+            string newRefreshTokenHash,
+            DateTime newRefreshExpiryDate,
+            string? modifyIp
+        );
 }
