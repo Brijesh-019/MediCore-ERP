@@ -1,0 +1,37 @@
+# Visual Studio
+.vs/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# .NET build files
+bin/
+obj/
+
+# React
+node_modules/
+dist/
+build/
+
+# Environment files
+.env
+.env.*
+!.env.example
+
+# Logs
+*.log
+logs/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Local settings and secrets
+appsettings.Development.json
+appsettings.Local.json
+secrets.json
+
+# NuGet
+*.nupkg
+packages/
